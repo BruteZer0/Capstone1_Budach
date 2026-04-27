@@ -28,7 +28,7 @@ public class TransactionManager {
              LocalTime parsedTime = LocalTime.parse(parts[1], timeFormatter);
              String description = parts[2];
              String vendor = parts[3];
-             double amount = Double.parseDouble(parts[2]);
+             double amount = Double.parseDouble(parts[4]);
 
              Transaction transaction = new Transaction(parsedDate, parsedTime, description, vendor, amount);
              transactions.add(transaction);

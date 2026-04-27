@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
-        List<Transaction> products = TransactionManager.getTransactions();
+        List<Transaction> transactions = TransactionManager.getTransactions();
 
         while (true) {
-            System.out.println("\n=== BANK OF AMERICA DEBIT CARD MENU ===");
+            System.out.println("\n=== MENU ===");
             System.out.println("D) Add Deposit");
             System.out.println("P) Make Payment");
             System.out.println("L) Ledger");
@@ -22,9 +22,11 @@ public class Main {
             switch(menuChoice) {
                 case 'D':
                     System.out.println("\n=== MAKE DEPOSIT ===");
+                    break;
 
                 case 'P':
                     System.out.println("\n=== MAKE PAYMENT  ===");
+                    break;
 
                 case 'L':
                     System.out.println("\n=== LEDGER ===");
@@ -39,6 +41,8 @@ public class Main {
 
                     switch(ledgerChoice) {
                         case 'A':
+                            displayTransactions(transactions);
+                            break;
                         case 'D':
                         case 'P':
                         case 'R':
@@ -46,10 +50,14 @@ public class Main {
                             break;
 
                     }
+                    break;
+
 
 
                 case 'X':
-                    System.out.println("Exiting system");
+                    System.out.println("\nExiting system");
+                    Thread.sleep(1000);
+                    System.out.println("Goodbye");
                     System.exit(0);
 
             }
@@ -71,5 +79,8 @@ public class Main {
         }
     }
 
-    public
+    public static void displayTransactions(List<Transaction> transactions){
+        for(Transaction transaction: transactions)
+            System.out.println(transaction.toString());
+    }
 }
