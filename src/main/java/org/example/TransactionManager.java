@@ -1,8 +1,6 @@
 package org.example;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -10,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionManager {
- public static List<Transaction> getTransactions(){
-     List<Transaction> transactions = new ArrayList<>();
+    public static List<Transaction> transactions = new ArrayList<>();
 
+ public static List<Transaction> getTransactions(){
      try {
          BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/transactions.csv"));
 
@@ -45,5 +43,25 @@ public class TransactionManager {
 
      return transactions;
  }
+
+ public static void addTransaction(Transaction transaction){
+     try{
+         File file = new File("src/main/resources/transactions.csv");
+         FileWriter fileWriter = new FileWriter(file, true);
+         if (file.length() > 0) {
+             fileWriter.write(System.lineSeparator());
+         }
+
+         fileWriter.write(String.format("%s|%s|%s|%s|%.2f", transaction.getDate(), transaction.getTime(),
+                 transaction.getDescription(),transaction.getVendor(),transaction.getAmount()));
+
+         fileWriter.close();
+     }
+     catch(IOException ex){
+         System.out.println("Error writing to file.");
+     }
+ }
+
+
 
 }

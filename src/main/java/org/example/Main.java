@@ -1,5 +1,8 @@
 package org.example;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -44,7 +47,68 @@ public class Main {
 
     public static void deposit(List<Transaction> transactions, Scanner scanner){
         System.out.println("\n=== MAKE DEPOSIT ===");
-        System.out.println("");
+
+        System.out.print("Deposit From: ");
+        String vendor = scanner.nextLine();
+
+        System.out.print("Description: ");
+        String description = scanner.nextLine();
+
+        System.out.print("Amount: ");
+        double amount = Double.parseDouble(scanner.nextLine());
+
+        LocalDate date;
+        LocalTime time;
+
+        System.out.println("\n=== DATE/TIME ===");
+        System.out.println("1) Manual Entry");
+        System.out.println("2) Current Date/Time");
+        System.out.print("Choose option: ");
+
+        int choice = getValidInt(scanner);
+
+
+        switch (choice) {
+            case 1:
+                while(true) {
+                    try {
+                        System.out.print("Enter Date (yyyy-MM-dd): ");
+                        date = LocalDate.parse(scanner.nextLine().trim());
+
+                        System.out.print("Enter Time (HH:mm:ss): ");
+                        time = LocalTime.parse(scanner.nextLine().trim());
+
+                        break;
+                    } catch (DateTimeException e) {
+                        System.out.println("Invalid Input: Please Try Again");
+                    }
+                }
+                break;
+
+            case 2:
+                date = LocalDate.now();
+                time = LocalTime.now().withNano(0);
+                break;
+
+            default:
+                System.out.println("Invalid option, using current date/time.");
+                date = LocalDate.now();
+                time = LocalTime.now().withNano(0);
+
+        }
+
+        Transaction transaction = new Transaction(date, time, description, vendor, amount);
+
+        transactions.add(transaction);
+
+        TransactionManager.addTransaction(transaction);
+
+        System.out.println("\nDeposit successfully added!");
+        System.out.println("Date: " + date);
+        System.out.println("Time: " + time);
+        System.out.println("Description: " + description);
+        System.out.println("From: " + vendor);
+        System.out.println("Amount: $" + amount);
     }
 
     public static void payment(List<Transaction> transactions, Scanner scanner){
