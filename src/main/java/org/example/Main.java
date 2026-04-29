@@ -150,7 +150,7 @@ public class Main {
     }
 
     public static void mainMenuExit(List<Transaction> transactions) throws InterruptedException {
-        System.out.println("\nExiting system...");
+        System.out.println("\nExiting System...");
         Thread.sleep(1000);
         System.out.println("Goodbye!");
         System.exit(0);
@@ -165,7 +165,7 @@ public class Main {
             System.out.println("4) Previous Year");
             System.out.println("5) Search By Vendor");
             System.out.println("6) Back");
-            System.out.print("Choose an option: ");
+            System.out.print("Choose Option: ");
 
             int reportChoice = getValidInt(scanner);
 
@@ -223,7 +223,7 @@ public class Main {
             }
         }
         if(!found){
-            System.out.println("\nVendor not found");
+            System.out.println("\nVendor Not Found");
         }
     }
 
@@ -235,7 +235,7 @@ public class Main {
                 return Character.toUpperCase(input.charAt(0));
             }
 
-            System.out.print("Invalid input. Enter a single letter: ");
+            System.out.print("Invalid Input: Enter a Single Letter: ");
         }
     }//validation input for character input
 
@@ -246,7 +246,7 @@ public class Main {
             try {
                 return Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number.");
+                System.out.println("Invalid Input: Please Enter a Number.");
             }
         }
     }//validation input for integer input
