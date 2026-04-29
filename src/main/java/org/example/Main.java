@@ -123,7 +123,7 @@ public class Main {
             System.out.println("P) Show Payments");
             System.out.println("R) Show Reports");
             System.out.println("H) Home");
-            System.out.print("Choose an option: ");
+            System.out.print("Choose Option: ");
 
             char ledgerChoice = getValidChar(scanner);
 
