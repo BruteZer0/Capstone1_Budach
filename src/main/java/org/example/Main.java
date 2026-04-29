@@ -2,11 +2,10 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException{
         Scanner scanner = new Scanner(System.in);
         List<Transaction> transactions = TransactionManager.getTransactions();
 
@@ -22,35 +21,37 @@ public class Main {
 
             switch(menuChoice) {
                 case 'D':
-                    deposit(transactions);
+                    deposit(transactions, scanner);
                     break;
 
                 case 'P':
-                    payment(transactions);
+                    payment(transactions, scanner);
                     break;
 
                 case 'L':
-                     ledger(transactions);
-                     break;
+                    ledger(transactions, scanner);
+                    break;
 
                 case 'X':
                     mainMenuExit(transactions);
-                    break;
+                    return;
+
+                default:
+                    System.out.println("Invalid Option");
             }
         }
     }
 
-    public static void deposit(List<Transaction> transactions){
+    public static void deposit(List<Transaction> transactions, Scanner scanner){
         System.out.println("\n=== MAKE DEPOSIT ===");
+        System.out.println("");
     }
 
-    public static void payment(List<Transaction> transactions){
+    public static void payment(List<Transaction> transactions, Scanner scanner){
         System.out.println("\n=== MAKE PAYMENT  ===");
     }
 
-    public static void ledger(List<Transaction> transactions){
-        Scanner scanner = new Scanner(System.in);
-
+    public static void ledger(List<Transaction> transactions, Scanner scanner){
         while(true) {
             System.out.println("\n=== LEDGER ===");
             System.out.println("A) All");
@@ -76,7 +77,7 @@ public class Main {
                     displayPayments(transactions);
                     break;
                 case 'R':
-                    reports(transactions);
+                    reports(transactions, scanner);
                     break;
                 case 'H':
                     return;
@@ -91,9 +92,7 @@ public class Main {
         System.exit(0);
     }
 
-    public static void reports(List<Transaction> transactions){
-        Scanner scanner = new Scanner(System.in);
-
+    public static void reports(List<Transaction> transactions, Scanner scanner){
         while (true) {
             System.out.println("\n=== REPORTS ===");
             System.out.println("1) Month to Date");
@@ -108,28 +107,59 @@ public class Main {
 
             switch (reportChoice) {
                 case 1:
+                    searchMonthToDate(transactions, scanner);
                     break;
                 case 2:
+                    searchPreviousMonth(transactions, scanner);
                     break;
                 case 3:
+                    searchYearToDate(transactions, scanner);
                     break;
                 case 4:
+                    searchPreviousYear(transactions, scanner);
                     break;
                 case 5:
-                    System.out.println("\nShowing Vendors:");
-                    displayVendors(transactions);
-                    System.out.print("\nType Vendor Name: ");
-                    String vendorName = scanner.nextLine();
-                    System.out.println("\nShowing Entries:");
-                    for (Transaction transaction : transactions) {
-                        if (Objects.equals(transaction.getVendor(), vendorName)) {
-                            System.out.println(transaction.toString());
-                        }
-                    }
+                    searchByVendor(transactions, scanner);
                     break;
                 case 6:
                     return;
             }
+        }
+    }
+
+    public static void searchMonthToDate(List<Transaction> transactions, Scanner scanner){
+
+    }
+
+    public static void searchPreviousMonth(List<Transaction> transactions, Scanner scanner){
+
+    }
+
+    public static void searchYearToDate(List<Transaction> transactions, Scanner scanner){
+
+    }
+
+    public static void searchPreviousYear(List<Transaction> transactions, Scanner scanner){
+
+    }
+
+    public static void searchByVendor(List<Transaction> transactions, Scanner scanner){
+        System.out.println("\nShowing Vendors:");
+        displayVendors(transactions);
+        System.out.print("\nType Vendor Name: ");
+        String vendorName = scanner.nextLine().trim();
+        boolean found = false;
+        for (Transaction transaction : transactions) {
+            if (transaction.getVendor().equalsIgnoreCase(vendorName)) {
+                if (!found) {
+                    System.out.println("\nShowing Entries:");
+                    found = true;
+                }
+                System.out.println(transaction);
+            }
+        }
+        if(!found){
+            System.out.println("\nVendor not found");
         }
     }
 
