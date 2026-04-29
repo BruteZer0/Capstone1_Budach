@@ -18,7 +18,7 @@ public class Main {
             System.out.println("P) Make Payment (Debit)");
             System.out.println("L) Show Ledger");
             System.out.println("X) Exit");
-            System.out.print("Choose an option: ");
+            System.out.print("Choose Option: ");
 
             char menuChoice = getValidChar(scanner);
 
@@ -63,7 +63,7 @@ public class Main {
         System.out.println("\n=== DATE/TIME ===");
         System.out.println("1) Manual Entry");
         System.out.println("2) Current Date/Time");
-        System.out.print("Choose option: ");
+        System.out.print("Choose Option: ");
 
         int choice = getValidInt(scanner);
 
@@ -72,10 +72,10 @@ public class Main {
             case 1:
                 while(true) {
                     try {
-                        System.out.print("Enter Date (yyyy-MM-dd): ");
+                        System.out.print("Enter Date (YYYY-MM-DD): ");
                         date = LocalDate.parse(scanner.nextLine().trim());
 
-                        System.out.print("Enter Time (HH:mm:ss): ");
+                        System.out.print("Enter Time (HH:MM:SS): ");
                         time = LocalTime.parse(scanner.nextLine().trim());
 
                         break;
@@ -91,7 +91,7 @@ public class Main {
                 break;
 
             default:
-                System.out.println("Invalid option, using current date/time.");
+                System.out.println("Invalid Option: Using Current Date/Time.");
                 date = LocalDate.now();
                 time = LocalTime.now().withNano(0);
 
@@ -103,7 +103,7 @@ public class Main {
 
         TransactionManager.addTransaction(transaction);
 
-        System.out.println("\nDeposit successfully added!");
+        System.out.println("\nDeposit Successfully Added!");
         System.out.println("Date: " + date);
         System.out.println("Time: " + time);
         System.out.println("Description: " + description);
