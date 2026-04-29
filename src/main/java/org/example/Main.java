@@ -259,7 +259,8 @@ public class Main {
 
         boolean found = false;
 
-        System.out.println("\nShowing Entries: ");
+        System.out.println("\n=== MONTH TO DATE ===");
+
         for (Transaction transaction: transactions){
             LocalDate date = transaction.getDate();
 
@@ -270,20 +271,82 @@ public class Main {
             }
         }
         if (!found){
-            System.out.println("No Month to Date Entries");
+            System.out.println("No Month to Date Entries Found");
         }
     }
 
     public static void searchPreviousMonth(List<Transaction> transactions, Scanner scanner){
+        LocalDate today = LocalDate.now();
+        LocalDate previousMonth = today.minusMonths(1);
 
+        LocalDate startDate = previousMonth.withDayOfMonth(1);
+        LocalDate endDate = previousMonth.withDayOfMonth(previousMonth.lengthOfMonth());
+
+        boolean found = false;
+
+        System.out.println("\n=== PREVIOUS MONTH ===");
+
+        for (Transaction transaction : transactions) {
+
+            LocalDate date = transaction.getDate();
+
+            if (!date.isBefore(startDate) && !date.isAfter(endDate)) {
+                System.out.println(transaction);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No Previous Month Entries Found");
+        }
     }
 
     public static void searchYearToDate(List<Transaction> transactions, Scanner scanner){
+        LocalDate today = LocalDate.now();
+        LocalDate firstDayYear = today.withDayOfYear(1);
 
+        boolean found = false;
+
+        System.out.println("\n=== YEAR TO DATE ===");
+
+        for (Transaction transaction: transactions){
+            LocalDate date = transaction.getDate();
+
+            if(!date.isBefore(firstDayYear) && !date.isAfter(today)) {
+                System.out.println(transaction);
+                found = true;
+
+            }
+        }
+        if (!found){
+            System.out.println("No Year to Date Entries Found");
+        }
     }
 
     public static void searchPreviousYear(List<Transaction> transactions, Scanner scanner){
+        LocalDate today = LocalDate.now();
+        LocalDate previousYear = today.minusYears(1);
 
+        LocalDate startDate = previousYear.withDayOfYear(1);
+        LocalDate endDate = previousYear.withDayOfYear(previousYear.lengthOfYear());
+
+        boolean found = false;
+
+        System.out.println("\n=== PREVIOUS YEAR ===");
+
+        for (Transaction transaction : transactions) {
+
+            LocalDate date = transaction.getDate();
+
+            if (!date.isBefore(startDate) && !date.isAfter(endDate)) {
+                System.out.println(transaction);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No Previous Year Entries Found");
+        }
     }
 
     public static void searchByVendor(List<Transaction> transactions, Scanner scanner){
