@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionManager {
-    public static List<Transaction> transactions = new ArrayList<>();
 
  public static List<Transaction> getTransactions(){
+     List<Transaction> transactions = new ArrayList<>();
+
      try {
          BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/transactions.csv"));
 

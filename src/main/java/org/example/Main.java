@@ -15,7 +15,7 @@ public class Main {
         while (true) {
             System.out.println("\n=== MAIN MENU ===");
             System.out.println("D) Add Deposit");
-            System.out.println("P) Make Payment (Debit)");
+            System.out.println("P) Make Payment");
             System.out.println("L) Show Ledger");
             System.out.println("X) Exit");
             System.out.print("Choose Option: ");
@@ -254,7 +254,24 @@ public class Main {
     }
 
     public static void searchMonthToDate(List<Transaction> transactions, Scanner scanner){
+        LocalDate today = LocalDate.now();
+        LocalDate firstDayMonth = today.withDayOfMonth(1);
 
+        boolean found = false;
+
+        System.out.println("\nShowing Entries: ");
+        for (Transaction transaction: transactions){
+            LocalDate date = transaction.getDate();
+
+            if(!date.isBefore(firstDayMonth) && !date.isAfter(today)) {
+                System.out.println(transaction);
+                found = true;
+
+            }
+        }
+        if (!found){
+            System.out.println("No Month to Date Entries");
+        }
     }
 
     public static void searchPreviousMonth(List<Transaction> transactions, Scanner scanner){
