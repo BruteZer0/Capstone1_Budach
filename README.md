@@ -1,0 +1,1 @@
+This program allows users to make deposit and payments. It also let users view their ledger, filter out ledger by payments or deposit. It also feature advance reports such as search by vendor, month to date, previous month, and etc. 
