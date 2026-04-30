@@ -401,6 +401,7 @@ public class Main {
     }
 
     public static void displayDeposits(List<Transaction> transactions){
+        transactions.sort(Comparator.comparing(Transaction::getDate).thenComparing(Transaction::getTime));
         for(Transaction transaction: transactions){
             if(transaction.getAmount() > 0){
                 System.out.println(transaction);
@@ -409,6 +410,7 @@ public class Main {
     }
 
     public static void displayPayments(List<Transaction> transactions){
+        transactions.sort(Comparator.comparing(Transaction::getDate).thenComparing(Transaction::getTime));
         for(Transaction transaction: transactions){
             if(transaction.getAmount() < 0){
                 System.out.println(transaction);
