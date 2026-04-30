@@ -4,6 +4,7 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -394,6 +395,7 @@ public class Main {
     }//validation input for integer input
 
     public static void displayTransactions(List<Transaction> transactions){
+        transactions.sort(Comparator.comparing(Transaction::getDate).thenComparing(Transaction::getTime));
         for(Transaction transaction: transactions)
             System.out.println(transaction.toString());
     }
