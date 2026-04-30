@@ -233,16 +233,16 @@ public class Main {
 
             switch (reportChoice) {
                 case 1:
-                    searchMonthToDate(transactions, scanner);
+                    searchMonthToDate(transactions);
                     break;
                 case 2:
-                    searchPreviousMonth(transactions, scanner);
+                    searchPreviousMonth(transactions);
                     break;
                 case 3:
-                    searchYearToDate(transactions, scanner);
+                    searchYearToDate(transactions);
                     break;
                 case 4:
-                    searchPreviousYear(transactions, scanner);
+                    searchPreviousYear(transactions);
                     break;
                 case 5:
                     searchByVendor(transactions, scanner);
@@ -253,7 +253,7 @@ public class Main {
         }
     }
 
-    public static void searchMonthToDate(List<Transaction> transactions, Scanner scanner){
+    public static void searchMonthToDate(List<Transaction> transactions){
         LocalDate today = LocalDate.now();
         LocalDate firstDayMonth = today.withDayOfMonth(1);
 
@@ -275,7 +275,7 @@ public class Main {
         }
     }
 
-    public static void searchPreviousMonth(List<Transaction> transactions, Scanner scanner){
+    public static void searchPreviousMonth(List<Transaction> transactions){
         LocalDate today = LocalDate.now();
         LocalDate previousMonth = today.minusMonths(1);
 
@@ -301,7 +301,7 @@ public class Main {
         }
     }
 
-    public static void searchYearToDate(List<Transaction> transactions, Scanner scanner){
+    public static void searchYearToDate(List<Transaction> transactions){
         LocalDate today = LocalDate.now();
         LocalDate firstDayYear = today.withDayOfYear(1);
 
@@ -323,7 +323,7 @@ public class Main {
         }
     }
 
-    public static void searchPreviousYear(List<Transaction> transactions, Scanner scanner){
+    public static void searchPreviousYear(List<Transaction> transactions){
         LocalDate today = LocalDate.now();
         LocalDate previousYear = today.minusYears(1);
 
