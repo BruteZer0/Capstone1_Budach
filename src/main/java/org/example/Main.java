@@ -37,7 +37,7 @@ public class Main {
                     break;
 
                 case 'X':
-                    mainMenuExit(transactions);
+                    mainMenuExit();
                     return;
 
                 default:
@@ -115,6 +115,10 @@ public class Main {
     public static void payment(List<Transaction> transactions, Scanner scanner){
         System.out.println("\n=== MAKE PAYMENT  ===");
 
+        System.out.print("Debit Card Info: ");
+
+        String debit = scanner.nextLine();
+
         System.out.print("Payment To: ");
         String vendor = scanner.nextLine();
 
@@ -171,6 +175,7 @@ public class Main {
         TransactionManager.addTransaction(transaction);
 
         System.out.println("\nPayment Successfully Added!");
+        System.out.println("Debit Card:" + debit);
         System.out.println("Date: " + date);
         System.out.println("Time: " + time);
         System.out.println("Description: " + description);
@@ -212,7 +217,7 @@ public class Main {
         }
     }
 
-    public static void mainMenuExit(List<Transaction> transactions) throws InterruptedException {
+    public static void mainMenuExit() throws InterruptedException {
         System.out.println("\nExiting System...");
         Thread.sleep(1000);
         System.out.println("Goodbye!");

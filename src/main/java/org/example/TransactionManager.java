@@ -52,8 +52,10 @@ public class TransactionManager {
          if (file.length() > 0) {
              fileWriter.write(System.lineSeparator());
          }
+         DateTimeFormatter timeFormatter =
+                 DateTimeFormatter.ofPattern("HH:mm:ss");
 
-         fileWriter.write(String.format("%s|%s|%s|%s|%.2f", transaction.getDate(), transaction.getTime(),
+         fileWriter.write(String.format("%s|%s|%s|%s|%.2f", transaction.getDate(), transaction.getTime().format(timeFormatter),
                  transaction.getDescription(),transaction.getVendor(),transaction.getAmount()));
 
          fileWriter.close();
